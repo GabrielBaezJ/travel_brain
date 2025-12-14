@@ -11,26 +11,27 @@ mongoose.set('strictQuery', false);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rutas de las APIs
-const weatherRoutes = require("./routes/weatherRoutes");
-const userRoutes = require("./routes/userRoutes");
-const tripRoutes = require("./routes/tripRoutes");
-
-// Rutas API simples para el frontend
+// IMPORTANTE: Rutas API PRIMERO (más específicas)
 const apiAuthRoutes = require("./routes/apiAuthRoutes");
 const apiCurrencyRoutes = require("./routes/apiCurrencyRoutes");
 const apiTripRoutes = require("./routes/apiTripRoutes");
 const apiOtherRoutes = require("./routes/apiOtherRoutes");
 
-app.use("/", weatherRoutes);
-app.use("/", userRoutes);
-app.use("/", tripRoutes);
-app.use("/", apiAuthRoutes);
-app.use("/", apiCurrencyRoutes);
-app.use("/", apiTripRoutes);
-app.use("/", apiOtherRoutes);
+app.use(apiAuthRoutes);
+app.use(apiCurrencyRoutes);
+app.use(apiTripRoutes);
+app.use(apiOtherRoutes);
 
-// Rutas para servir HTML
+// Rutas originales de mongoose
+const weatherRoutes = require("./routes/weatherRoutes");
+const userRoutes = require("./routes/userRoutes");
+const tripRoutes = require("./routes/tripRoutes");
+
+app.use(weatherRoutes);
+app.use(userRoutes);
+app.use(tripRoutes);
+
+// Rutas para servir HTML (al final)
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'src/views/home/index.html')));
 app.get('/destinations', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/destinations.html')));
 app.get('/favorites', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/favorites.html')));
