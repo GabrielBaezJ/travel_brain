@@ -40,16 +40,7 @@ app.use(apiCurrencyRoutes);
 app.use(apiTripRoutes);
 app.use(apiOtherRoutes);
 
-// Rutas originales de mongoose
-const weatherRoutes = require("./routes/weatherRoutes");
-const userRoutes = require("./routes/userRoutes");
-const tripRoutes = require("./routes/tripRoutes");
-
-app.use(weatherRoutes);
-app.use(userRoutes);
-app.use(tripRoutes);
-
-// Rutas para servir HTML (al final)
+// Rutas para servir HTML (ANTES de las rutas de mongoose para evitar conflictos)
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'src/views/home/index.html')));
 app.get('/destinations', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/destinations.html')));
 app.get('/favorites', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/favorites.html')));
@@ -63,6 +54,15 @@ app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'src/views/adm
 app.get('/admin/users', (req, res) => res.sendFile(path.join(__dirname, 'src/views/admin/users.html')));
 app.get('/auth/login', (req, res) => res.sendFile(path.join(__dirname, 'src/views/auth/login.html')));
 app.get('/auth/register', (req, res) => res.sendFile(path.join(__dirname, 'src/views/auth/register.html')));
+
+// Rutas originales de mongoose (AL FINAL, después de HTML)
+const weatherRoutes = require("./routes/weatherRoutes");
+const userRoutes = require("./routes/userRoutes");
+const tripRoutes = require("./routes/tripRoutes");
+
+app.use(weatherRoutes);
+app.use(userRoutes);
+app.use(tripRoutes);
 
 // Connect to MongoDB with proper options
 mongoose.connect(process.env.MONGO_URI || `mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/travel_brain?retryWrites=true&w=majority`, {
