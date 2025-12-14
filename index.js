@@ -16,9 +16,19 @@ const weatherRoutes = require("./routes/weatherRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tripRoutes = require("./routes/tripRoutes");
 
+// Rutas API simples para el frontend
+const apiAuthRoutes = require("./routes/apiAuthRoutes");
+const apiCurrencyRoutes = require("./routes/apiCurrencyRoutes");
+const apiTripRoutes = require("./routes/apiTripRoutes");
+const apiOtherRoutes = require("./routes/apiOtherRoutes");
+
 app.use("/", weatherRoutes);
 app.use("/", userRoutes);
 app.use("/", tripRoutes);
+app.use("/", apiAuthRoutes);
+app.use("/", apiCurrencyRoutes);
+app.use("/", apiTripRoutes);
+app.use("/", apiOtherRoutes);
 
 // Connect to MongoDB with proper options
 mongoose.connect(process.env.MONGO_URI || `mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/travel_brain?retryWrites=true&w=majority`, {
