@@ -1,11 +1,24 @@
 const port = process.env.PORT || 3004;
 const express = require("express");
+const session = require("express-session");
 const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 
 // Configure mongoose
 mongoose.set('strictQuery', false);
+
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'travel-brain-secret-key-2024',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
 
 // Middleware
 app.use(express.json());
