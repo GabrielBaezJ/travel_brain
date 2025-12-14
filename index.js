@@ -30,6 +30,21 @@ app.use("/", apiCurrencyRoutes);
 app.use("/", apiTripRoutes);
 app.use("/", apiOtherRoutes);
 
+// Rutas para servir HTML
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'src/views/home/index.html')));
+app.get('/destinations', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/destinations.html')));
+app.get('/favorites', (req, res) => res.sendFile(path.join(__dirname, 'src/views/destinations/favorites.html')));
+app.get('/trips', (req, res) => res.sendFile(path.join(__dirname, 'src/views/trips/trips-form.html')));
+app.get('/budget', (req, res) => res.sendFile(path.join(__dirname, 'src/views/trips/budget.html')));
+app.get('/routes', (req, res) => res.sendFile(path.join(__dirname, 'src/views/routes/route.html')));
+app.get('/weather', (req, res) => res.sendFile(path.join(__dirname, 'src/views/weather/weather.html')));
+app.get('/currency', (req, res) => res.sendFile(path.join(__dirname, 'src/views/currency/currency.html')));
+app.get('/itinerary', (req, res) => res.sendFile(path.join(__dirname, 'src/views/itinerary/itinerary.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'src/views/admin/index.html')));
+app.get('/admin/users', (req, res) => res.sendFile(path.join(__dirname, 'src/views/admin/users.html')));
+app.get('/auth/login', (req, res) => res.sendFile(path.join(__dirname, 'src/views/auth/login.html')));
+app.get('/auth/register', (req, res) => res.sendFile(path.join(__dirname, 'src/views/auth/register.html')));
+
 // Connect to MongoDB with proper options
 mongoose.connect(process.env.MONGO_URI || `mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/travel_brain?retryWrites=true&w=majority`, {
     serverSelectionTimeoutMS: 30000,
