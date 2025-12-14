@@ -59,10 +59,12 @@ app.get('/auth/register', (req, res) => res.sendFile(path.join(__dirname, 'src/v
 const weatherRoutes = require("./routes/weatherRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tripRoutes = require("./routes/tripRoutes");
+const destinationRoutes = require("./routes/destinationRoutes");
 
 app.use(weatherRoutes);
 app.use(userRoutes);
 app.use(tripRoutes);
+app.use(destinationRoutes);
 
 // Connect to MongoDB with proper options
 mongoose.connect(process.env.MONGO_URI || `mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/travel_brain?retryWrites=true&w=majority`, {
