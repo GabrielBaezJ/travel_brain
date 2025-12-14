@@ -1,6 +1,7 @@
 const port = process.env.PORT || 3004;
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
 const { MongoClient } = require("mongodb");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -20,16 +21,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/';
 const MONGO_DB = process.env.MONGO_DB || 'travel_brain';
 
-// Connect to MongoDB with native driver
+// Configure mongoose
+mongoose.set('strictQuery', false);
+
+// IMPORTANTE: Conectar MONGOOSE primero (para weather, trips, users routes)
+mongoose.connect(`${MONGO_URI}${MONGO_DB}?retryWrites=true&w=majority`, {
+    serverSelectionTimeoutMS: 30000,
+    socketTimeoutMS: 45000,
+})
+.then(() => {
+    console.log("✅ Mongoose connected to MongoDB Database");
+})
+.catch((error) => {
+    console.error("❌ Mongoose connection error:", error);
+});
+
+const db = mongoose.connection;
+db.on("error", (error) => console.error("MongoDB error:", error));
+db.on("disconnected", () => console.log("MongoDB disconnected"));
+
+// Connect to MongoDB with native driver (para nuevas rutas)
 MongoClient.connect(MONGO_URI, {
     serverSelectionTimeoutMS: 30000,
     socketTimeoutMS: 45000,
 })
 .then((client) => {
-    console.log("✅ System connected to MongoDB Database");
+    console.log("✅ Native MongoDB driver connected");
     
-    const db = client.db(MONGO_DB);
-    app.locals.db = db;
+    const nativeDb = client.db(MONGO_DB);
+    app.locals.db = nativeDb;
 
     // Importar rutas con autenticación
     const { router: authRouter, authenticateToken, requireAdmin } = require("./routes/authRoutes");
