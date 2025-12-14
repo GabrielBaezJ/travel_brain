@@ -24,8 +24,28 @@ router.post('/api/auth/login', async (req, res) => {
       return res.status(401).json({ ok: false, message: 'Credenciales inválidas' });
     }
 
-    // Verificar contraseña con bcrypt (igual que password_verify en PHP)
-    const isValidPassword = await bcrypt.compare(password, user.passwordHash);
+    // Verificar contraseña (EXACTAMENTE como en PHP isValidCredentials)
+    let isValidPassword = false;
+    
+    // Caso 1: passwordHash con bcrypt
+    if (user.passwordHash && typeof user.passwordHash === 'string' && user.passwordHash !== '') {
+      isValidPassword = await bcrypt.compare(password, user.passwordHash);
+    }
+    
+    // Caso 2: password legacy en texto plano (migración)
+    if (!isValidPassword && user.password && typeof user.password === 'string' && user.password !== '') {
+      if (user.password === password) {
+        // Promover a passwordHash y eliminar password legacy
+        isValidPassword = true;
+        try {
+          user.passwordHash = await bcrypt.hash(password, 10);
+          user.password = undefined;
+          await user.save();
+        } catch (e) {
+          console.error('Error promoviendo password:', e);
+        }
+      }
+    }
     
     if (!isValidPassword) {
       return res.status(401).json({ ok: false, message: 'Credenciales inválidas' });
