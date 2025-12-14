@@ -1,0 +1,35 @@
+# VCS
+.git
+.gitignore
+
+# Node / frontend caches (if any future additions)
+node_modules/
+dist/
+
+# Composer artifacts (we install inside image; exclude local vendor to avoid bloat)
+vendor/
+vendor/**/.git
+composer.phar
+
+# OS / editor noise
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.code-workspace
+
+# Tests (excluded from prod image)
+tests/
+
+# Misc
+.env
+.env.*
+docker-compose.*
+logs/
+cache/
+tmp/
+temp/
+var/
+storage/

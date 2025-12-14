@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión - Travel Planner</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/auth.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="auth-page">
+  <main class="auth-container">
+    <div class="auth-left">
+      <img src="/assets/img/travelbrain-logo.jpg" alt="Logo" class="auth-logo" />
+      <h2>Intelligent Travel Planner</h2>
+      <p>Planifica tus viajes de manera inteligente y organizada</p>
+    </div>
+
+    <div class="auth-form-container">
+      <!-- method="post" evita que las credenciales aparezcan en la URL si por alguna razón no carga el JS -->
+      <form id="loginForm" class="auth-form" method="post" action="/auth/login" autocomplete="on">
+        <div class="form-group">
+          <input type="text" id="l_username" name="username" placeholder="Correo electrónico o usuario" required autocomplete="username" minlength="3" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="l_password" name="password" placeholder="Contraseña" required autocomplete="current-password" minlength="6" />
+        </div>
+
+        <button type="submit" class="btn-auth">Iniciar sesión</button>
+
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+
+        <!-- Info: Google Sign-In temporalmente deshabilitado -->
+        <div style="margin: 1.5rem 0; padding: 0.75rem; background: #e3f2fd; border-left: 3px solid #2196f3; border-radius: 4px; font-size: 0.875rem; color: #1565c0;">
+          <strong>ℹ️ Nota:</strong> Google Sign-In está temporalmente deshabilitado. Usa el formulario de login tradicional.
+        </div>
+
+        <div id="buttonDiv"></div>
+        <div class="divider"><span></span></div>
+
+        <!-- Navega a la ruta limpia que sirve register.html -->
+        <a href="/auth/register" class="btn-create-account">Crear cuenta nueva</a>
+      </form>
+    </div>
+  </main>
+
+  <footer class="auth-footer">
+    <p>© 2024 Intelligent Travel Planner</p>
+  </footer>
+
+  <!-- Modal de error -->
+  <div id="errorModal" class="error-modal" style="display:none;">
+    <div class="error-content">
+      <button type="button" class="close-error" aria-label="Cerrar">×</button>
+      <p id="errorMessage"></p>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/auth-login.js"></script>
+  <script>
+  function handleCredentialResponse(response) {
+    console.log("Token recibido de Google:", response.credential);
+    // Aquí deberías enviar el token a tu backend para validarlo
+  }
+
+  window.onload = function () {
+    if (typeof google !== 'undefined' && google.accounts) {
+      google.accounts.id.initialize({
+        client_id: "713160370468-sb3jjg16idaaakn3n6fe870nu6cn2h4b.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }
+      );
+
+      google.accounts.id.prompt();
+    }
+  }
+  </script>
+</body>
+</html>

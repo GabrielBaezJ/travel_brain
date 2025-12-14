@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Destinos - Prototipo</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/rating.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Destinos</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/destinations">Destinos</a>
+      <a href="/trips">Viajes</a>
+      <a href="/routes">Rutas</a>
+      <a href="/weather">Clima</a>
+      <a href="/budget">Presupuesto</a>
+      <a href="/itinerary">Itinerario</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+        <h2>Registrar destino</h2>
+        <form id="destForm">
+          <input type="hidden" id="destId" />
+    <label>Nombre <input id="destName" name="name" required minlength="2" list="destNameList" data-autocomplete="mapbox" /></label>
+    <datalist id="destNameList"></datalist>
+  <label>País <input id="destCountry" name="country" required minlength="2" /></label>
+  <label>Descripción <textarea id="destDesc" name="description" required minlength="2" placeholder="Describe el lugar..."></textarea></label>
+  <label>Latitud <input id="destLat" name="lat" type="number" step="any" min="-90" max="90" placeholder="opcional" /></label>
+  <label>Longitud <input id="destLng" name="lng" type="number" step="any" min="-180" max="180" placeholder="opcional" /></label>
+  <label>Imagen URL <input id="destImg" name="img" type="url" placeholder="https://..." /></label>
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Lista de destinos</h2>
+      <input id="searchDest" placeholder="Buscar por nombre o país" />
+      <ul id="destList" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer"><small>Datos en MongoDB Atlas</small></footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/utils.dom.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/destinations-api.js"></script>
+  <script src="/assets/js/rates-api.js"></script>
+  <script src="/assets/js/rating-ui.js"></script>
+  <script src="/assets/js/place-image.js"></script>
+  <script src="/assets/js/mapbox-autocomplete.js"></script>
+  <script src="/assets/js/destinations.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Travel Planner</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/auth.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="auth-page">
+  <main class="auth-container register">
+    <div class="auth-form-container wide">
+      <h2>Crear cuenta nueva</h2>
+      <p class="subtitle">Es rápido y fácil.</p>
+
+      <form id="registerForm" class="auth-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" id="r_firstname" name="firstname" placeholder="Nombre" required minlength="2" pattern="[A-Za-zÀ-ÿ'\-\s]{2,}" title="Solo letras y espacios, mínimo 2 caracteres" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <input type="text" id="r_lastname" name="lastname" placeholder="Apellido" required minlength="2" pattern="[A-Za-zÀ-ÿ'\-\s]{2,}" title="Solo letras y espacios, mínimo 2 caracteres" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="r_username" name="username" placeholder="Usuario" required minlength="3" pattern="[A-Za-z0-9._\-]{3,20}" title="3-20 caracteres: letras, números, punto, guion y guion bajo" autocomplete="username" />
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="r_email" name="email" placeholder="Correo electrónico" required autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="r_password" name="password" placeholder="Contraseña nueva" required minlength="6" autocomplete="new-password" />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="r_password2" name="password2" placeholder="Confirmar contraseña" required minlength="6" autocomplete="new-password" />
+        </div>
+
+        <p class="terms">
+          Al hacer clic en "Registrarte", aceptas nuestras Condiciones de uso y la Política de privacidad.
+        </p>
+
+        <button type="submit" class="btn-register">Registrarte</button>
+
+        <a href="/auth/login" class="login-link">¿Ya tienes una cuenta?</a>
+      </form>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/auth-register.js"></script>
+</body>
+</html>

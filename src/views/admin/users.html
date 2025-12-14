@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Usuarios</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Administración de Usuarios</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/destinations">Destinos</a>
+      <a href="/trips">Viajes</a>
+      <a href="/routes">Rutas</a>
+      <a href="/weather">Clima</a>
+      <a href="/budget">Presupuesto</a>
+      <a href="/itinerary">Itinerario</a>
+      <a href="/currency">Divisas (Frankfurter)</a>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/register">Registro</a>
+      <span id="userArea"></span>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Usuarios</h2>
+      <div class="row g-2">
+        <div class="col-md-3"><input id="pageSize" type="number" min="1" value="10" /></div>
+        <div class="col-md-3"><button id="reloadBtn">Recargar</button></div>
+      </div>
+      <div class="table-responsive">
+        <table class="table" id="usersTable">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Email</th>
+              <th>Nombre</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="userDetailSection" style="display:none;">
+      <h2>Detalle de usuario</h2>
+      <div id="userDetail"></div>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <label>Rol
+            <select id="editRole">
+              <option value="REGISTERED">REGISTERED</option>
+              <option value="ADMIN">ADMIN</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-md-4">
+          <label>Estado
+            <select id="editStatus">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="DEACTIVATED">DEACTIVATED</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-md-4">
+          <button id="saveUserBtn">Guardar cambios</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><small>Panel Admin</small></footer>
+
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/admin-users.js"></script>
+</body>
+</html>

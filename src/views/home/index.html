@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>✈️ Intelligent Travel Planner - Tu Compañero de Viajes</title>
+	<meta name="description" content="Planifica tus viajes de manera inteligente con nuestra plataforma completa de gestión de itinerarios, presupuestos y destinos.">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+	<script type="importmap">
+	{
+		"imports": {
+			"@google/generative-ai": "https://esm.run/@google/generative-ai"
+		}
+	}
+	</script>
+</head>
+<body>
+	<header class="site-header">
+		<div class="container-fluid">
+			<h1>Intelligent Travel Planner</h1>
+			<nav>
+				<a href="/">🏠 Inicio</a>
+				<a href="/destinations">Destinos</a>
+				<a href="/trips">Viajes</a>
+				<a href="/routes">Rutas</a>
+                                <a href="/weather">Clima</a>
+                                <a href="/budget">Presupuesto</a>
+                                <a href="/itinerary">Itinerario</a>
+                                <a href="/currency">Divisas (Frankfurter)</a>
+				<!-- area para mostrar usuario / cerrar sesión -->
+				<a href="/auth/login">Login</a>
+      		<a href="/auth/register">Registro</a>
+			<span id="userArea"></span>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<!-- Hero Section -->
+		<section class="hero-section fade-in">
+			<h2 class="text-gradient">Planifica tu Aventura Perfecta</h2>
+			<p>Descubre el mundo con nuestra plataforma inteligente de planificación de viajes. Gestiona destinos, calcula rutas, controla presupuestos y crea itinerarios únicos para tus aventuras.</p>
+			<div class="d-flex justify-content-center gap-3 flex-wrap">
+				<a href="/destinations" class="btn btn-primary">🌍 Explorar Destinos</a>
+				<a href="/trips" class="btn btn-outline">🎒 Crear Viaje</a>
+			</div>
+		</section>
+
+		<!-- Funcionalidades Principales -->
+		<section class="slide-in-left">
+			<div class="card card-feature">
+				<h3 class="text-gradient mb-3">🚀 Funcionalidades del Sistema</h3>
+				<p class="text-secondary mb-4">Nuestro prototipo funcional simula todas las características esenciales para la planificación inteligente de viajes, utilizando tecnologías modernas y almacenamiento local.</p>
+				
+				<div class="feature-list">
+					<div class="feature-item slide-in-left" data-icon="🏝️">
+						<h3>Gestión de Destinos</h3>
+						<p>CRUD completo para administrar destinos con imágenes, países y descripciones detalladas.</p>
+					</div>
+					
+					<div class="feature-item slide-in-right" data-icon="🎒">
+						<h3>Planificación de Viajes</h3>
+						<p>Organiza tus viajes vinculando múltiples destinos y creando experiencias personalizadas.</p>
+					</div>
+					
+					<div class="feature-item slide-in-left" data-icon="🗺️">
+						<h3>Cálculo de Rutas</h3>
+						<p>Algoritmo Haversine para calcular distancias precisas entre destinos y optimizar tus trayectos.</p>
+					</div>
+					
+					<div class="feature-item slide-in-right" data-icon="🌤️">
+						<h3>Información Climática</h3>
+						<p>Datos meteorológicos simulados para ayudarte a planificar según las condiciones del destino.</p>
+					</div>
+					
+					<div class="feature-item slide-in-left" data-icon="💰">
+						<h3>Control de Presupuesto</h3>
+						<p>Gestiona gastos, establece límites y mantén control total sobre tus finanzas de viaje.</p>
+					</div>
+					
+					<div class="feature-item slide-in-right" data-icon="📋">
+						<h3>Itinerarios Inteligentes</h3>
+						<p>Genera automáticamente itinerarios detallados y expórtalos para llevar en tu aventura.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Acceso Rápido -->
+		<section class="slide-in-right">
+			<div class="card card-action">
+				<h3 class="text-gradient mb-3">⚡ Acceso Rápido</h3>
+				<p class="text-secondary mb-4">Accede rápidamente a las funciones más utilizadas de la plataforma</p>
+				
+				<div class="row g-3">
+                                        <div class="col-md-6">
+                                                <div class="d-grid">
+                                                        <a href="/weather" class="btn btn-warning">
+                                                                🌤️ Ver Clima
+                                                        </a>
+                                                </div>
+					</div>
+					<div class="col-md-6">
+						<div class="d-grid">
+							<a href="/routes" class="btn btn-success">
+								🗺️ Calcular Ruta
+							</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="d-grid">
+							<a href="/budget" class="btn btn-secondary">
+								💰 Gestionar Presupuesto
+							</a>
+						</div>
+					</div>
+                                        <div class="col-md-6">
+                                                <div class="d-grid">
+                                                        <a href="/itinerary" class="btn btn-primary">
+                                                                📋 Crear Itinerario
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <div class="d-grid">
+                                                        <a href="/currency" class="btn btn-info">
+                                                                💱 Conversor Frankfurter
+                                                        </a>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+		<!-- Información Técnica -->
+		<section class="fade-in">
+			<div class="card card-stats">
+				<h3 class="text-gradient mb-3">🔧 Información Técnica</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<h5>💾 Almacenamiento</h5>
+						<p class="text-secondary">Datos persistentes en MongoDB de desarrollo</p>
+					</div>
+					<div class="col-md-6">
+						<h5>🎨 Tecnologías</h5>
+						<p class="text-secondary">HTML5, CSS3, JavaScript ES6+, Bootstrap 5</p>
+					</div>
+					<div class="col-md-6">
+						<h5>📱 Compatibilidad</h5>
+						<p class="text-secondary">Diseño responsivo para todos los dispositivos</p>
+					</div>
+					<div class="col-md-6">
+						<h5>⚡ Rendimiento</h5>
+						<p class="text-secondary">Optimizado para carga rápida y experiencia fluida</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-8">
+					<small>✈️ Intelligent Travel Planner - Prototipo Funcional | Datos almacenados localmente</small>
+				</div>
+				<div class="col-md-4 text-md-end">
+					<small>🚀 Desarrollado con tecnologías modernas</small>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS para componentes interactivos -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- layout primero para inyectar header; luego auth para toggle de sesión -->
+	<script src="/assets/js/layout.js"></script>
+	<!-- scripts: auth primero para chequear sesión y mostrar usuario -->
+	<script src="/assets/js/auth-api.js"></script>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/landing-animations.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* Estilos generales para itinerario */
+.trip-info-box {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f8f9fa;
+  border-left: 4px solid #4a90e2;
+  border-radius: 4px;
+}
+
+.trip-info-box h3 {
+  margin: 0 0 12px 0;
+  color: #2c3e50;
+}
+
+.day-plan {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 3px solid #4a90e2;
+}
+
+.day-plan h4 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 1.2em;
+}
+
+.activities-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.activities-list li {
+  padding: 8px 12px;
+  margin: 5px 0;
+  background: white;
+  border-radius: 4px;
+  border-left: 2px solid #4a90e2;
+}
+
+.basic-itinerary {
+  padding: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #e74c3c;
+}
+
+/* Estilos para impresión (PDF) */
+@media print {
+  /* Ocultar elementos de navegación */
+  .site-header,
+  .site-footer,
+  nav,
+  button,
+  .button-group,
+  .form-grid,
+  .card:first-of-type {
+    display: none !important;
+  }
+
+  /* Ajustar contenedor principal */
+  .container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px;
+  }
+
+  /* Título del documento */
+  body::before {
+    content: "Itinerario de Viaje";
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+
+  /* Mejorar legibilidad */
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+
+  /* Días del itinerario */
+  .day-plan {
+    page-break-inside: avoid;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-left: 3px solid #4a90e2;
+  }
+
+  .day-plan h4 {
+    color: #2c3e50;
+    font-size: 16px;
+    margin: 0 0 10px 0;
+  }
+
+  /* Actividades */
+  .activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .activities-list li {
+    padding: 8px 10px;
+    margin: 5px 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-left: 2px solid #4a90e2;
+  }
+
+  /* Información del viaje */
+  .trip-info-box {
+    page-break-inside: avoid;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-left: 4px solid #4a90e2;
+  }
+
+  .trip-info-box h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+  }
+
+  /* Fuentes y colores para impresión */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  h2 {
+    font-size: 20pt;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 16pt;
+    color: #2c3e50;
+  }
+
+  h4 {
+    font-size: 14pt;
+    color: #2c3e50;
+  }
+
+  /* Evitar saltos de página en medio de contenido */
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  /* Márgenes de página */
+  @page {
+    margin: 2cm;
+  }
+}
+
+/* Estilos adicionales cuando se está imprimiendo */
+body.printing .site-header,
+body.printing .site-footer,
+body.printing nav,
+body.printing button,
+body.printing .button-group {
+  display: none !important;
+}
+
+body.printing .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+body.printing .card {
+  box-shadow: none;
+  margin: 0;
+}

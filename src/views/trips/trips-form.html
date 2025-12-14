@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuevo Viaje</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:0">
+      <h1>Viajes</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/destinations">Destinos</a>
+        <a href="/trips">Viajes</a>
+        <a href="/routes">Rutas</a>
+        <a href="/weather">Clima</a>
+        <a href="/budget">Presupuesto</a>
+        <a href="/itinerary">Itinerario</a>
+        <a href="/currency">Divisas (Frankfurter)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="main-grid">
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <h1>Nuevo Viaje</h1>
+            <p>Crea un nuevo viaje para comenzar a planificar</p>
+          </div>
+
+          <div class="card-content">
+            <form id="tripForm">
+              <div class="form-group">
+                <label for="title">Nombre del Viaje</label>
+                <input type="text" id="title" placeholder="ej. Vacaciones de verano" required />
+              </div>
+
+              <div class="form-group">
+                <label for="destination">Destino</label>
+                <input type="text" id="destination" placeholder="Ciudad, País" required
+                  data-autocomplete="mapbox" data-format="city-country" list="destinationList" />
+                <datalist id="destinationList"></datalist>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="start_date">Fecha de inicio</label>
+                  <input type="date" id="start_date" required />
+                </div>
+                <div class="form-group">
+                  <label for="end_date">Fecha de fin</label>
+                  <input type="date" id="end_date" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="budget">Presupuesto (USD)</label>
+                <input type="number" id="budget" placeholder="ej. 2000" />
+              </div>
+
+              <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea id="description" rows="3" placeholder="Añade una descripción sobre tu viaje..."></textarea>
+              </div>
+
+              <button type="submit" id="submitBtn">Crear Viaje</button>
+            </form>
+            <div id="message"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <div class="card-header">
+            <h2>Mis Viajes Planificados</h2>
+            <p class="card-sub">Tus viajes aparecerán aquí tras crear uno.</p>
+          </div>
+          <div style="margin-top:12px">
+            <div id="trip-list" class="trip-grid"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/mapbox-autocomplete.js"></script>
+  <script src="/assets/js/trip-form.js"></script>
+  <script src="/assets/js/trip-list.js"></script>
+</body>
+</html>

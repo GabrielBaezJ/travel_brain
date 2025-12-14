@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clima - Prototipo</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css">
+  <script src="/config.js"></script>
+  
+</head>
+<body>
+  <header class="site-header">
+    <div class="container-fluid">
+      <h1>Clima</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/destinations">Destinos</a>
+        <a href="/trips">Viajes</a>
+        <a href="/routes">Rutas</a>
+        <a href="/weather">Clima</a>
+        <a href="/budget">Presupuesto</a>
+        <a href="/itinerary">Itinerario</a>
+        <a href="/currency">Divisas (Frankfurter)</a>
+        <a href="/admin/users">Usuarios</a>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Registro</a>
+        <span id="userArea" style="margin-left:12px;"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Ver clima</h2>
+      <div class="form-row" style="gap:12px;align-items:flex-end;flex-wrap:wrap">
+        <label style="flex:1 1 420px">Buscar lugar (Mapbox)
+          <input id="weatherPlaceInput" list="weatherPlaceList" placeholder="Ciudad, país" autocomplete="off" />
+          <datalist id="weatherPlaceList"></datalist>
+        </label>
+        <input type="hidden" id="weatherLat" />
+        <input type="hidden" id="weatherLon" />
+      </div>
+      <button id="getWeatherBtn">Obtener clima</button>
+      <div id="weatherResult" class="weather-card" style="display:none">
+        <div class="weather-header">
+          <h3 id="weatherLocation"></h3>
+          <div id="weatherDate"></div>
+        </div>
+        <div class="weather-body">
+          <div id="weatherMain"></div>
+          <div id="weatherDetails"></div>
+        </div>
+      </div>
+      
+      <div class="card" style="margin-top:12px">
+        <div id="weatherMap" style="height:320px;width:100%"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Registros guardados</h2>
+      <ul id="weatherList" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer"><small>Clima provisto por OpenWeather</small></footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/weather.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mis Favoritos - Prototipo</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/rating.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="/config.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Mis Favoritos</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/destinations">Destinos</a>
+      <a href="/trips">Viajes</a>
+      <a href="/routes">Rutas</a>
+      <a href="/weather">Clima</a>
+      <a href="/budget">Presupuesto</a>
+      <a href="/itinerary">Itinerario</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Destinos Favoritos ❤️</h2>
+      <p>Aquí puedes ver todos los destinos que has marcado como favoritos.</p>
+      
+      <div id="favoritesContainer">
+        <div style="text-align: center; padding: 20px;">
+          <span class="loading-spinner"></span> Cargando favoritos...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><small>Datos en MongoDB Atlas</small></footer>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/assets/js/validation.js"></script>
+  <script src="/assets/js/utils.dom.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/auth-api.js"></script>
+  <script src="/assets/js/destinations-api.js"></script>
+  <script src="/assets/js/rates-api.js"></script>
+  <script src="/assets/js/rating-ui.js"></script>
+  <script src="/assets/js/favorites.js"></script>
+</body>
+</html>

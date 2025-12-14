@@ -1,0 +1,18 @@
+{
+  "name": "project_functional_prototype",
+  "version": "1.0.0",
+  "description": "**TravelBrain** is a web-based application that automatically generates personalized travel itineraries based on weather, budget, and distance.  \r The system integrates multiple APIs to provide real-time data for travel planning, including route estimation, weather forecasts, currency conversion, and destination imagery.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1",
+    "node-cache": "^5.1.2"
+  }
+}

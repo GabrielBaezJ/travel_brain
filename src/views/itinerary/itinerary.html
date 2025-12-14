@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Itinerario - Prototipo</title>
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/itinerary.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+	<script type="importmap">
+	{
+		"imports": {
+			"@google/generative-ai": "https://esm.run/@google/generative-ai"
+		}
+	}
+	</script>
+</head>
+<body>
+        <header class="site-header">
+                <h1>Itinerario automático</h1>
+                <nav>
+                        <a href="/">Inicio</a>
+                        <a href="/destinations">Destinos</a>
+                        <a href="/trips">Viajes</a>
+                        <a href="/routes">Rutas</a>
+                        <a href="/weather">Clima</a>
+                        <a href="/budget">Presupuesto</a>
+                        <a href="/itinerary">Itinerario</a>
+                        <a href="/currency">Divisas (Frankfurter)</a>
+						<a href="/admin/users">Usuarios</a>
+						<a href="/auth/login">Login</a>
+						<a href="/auth/register">Registro</a>
+					<span id="userArea" style="margin-left:12px;"></span>
+                </nav>
+        </header>
+
+	<main class="container">
+		<section class="card">
+			<h2>Generar itinerario inteligente</h2>
+			<div class="form-grid">
+				<label>Seleccionar viaje
+					<select id="itTripSelect" name="trip" required>
+						<option value="">-- Selecciona un viaje --</option>
+					</select>
+				</label>
+			</div>
+			
+			<!-- Información del viaje seleccionado (auto-completada) -->
+			<div id="tripInfoBox" class="trip-info-box" style="display:none; margin: 20px 0; padding: 16px; background: #f8f9fa; border-left: 4px solid #4a90e2; border-radius: 4px;">
+				<h3 style="margin: 0 0 12px 0; color: #2c3e50;">📋 Información del viaje</h3>
+				<div id="tripInfo"></div>
+			</div>
+			
+			<div class="form-grid">
+				<label>Días del viaje (calculado automáticamente)
+					<input id="itDays" name="days" type="number" min="1" max="30" value="3" readonly style="background: #e9ecef; cursor: not-allowed;">
+				</label>
+				<label>Tipo de intereses
+					<select id="itInterests" name="interests">
+						<option value="cultura">Cultura e Historia</option>
+						<option value="naturaleza">Naturaleza y Aventura</option>
+						<option value="gastronomia">Gastronomía</option>
+						<option value="aventura">Deportes y Aventura</option>
+					</select>
+				</label>
+				<label>Estilo de presupuesto
+					<select id="itBudgetStyle" name="budgetStyle">
+						<option value="economico">Económico</option>
+						<option value="medio" selected>Medio</option>
+						<option value="alto">Alto</option>
+					</select>
+				</label>
+			</div>
+			<div class="button-group">
+				<button id="genItBtn" class="primary-btn">🤖 Generar con IA</button>
+				<button id="saveItBtn" class="secondary-btn" style="display:none">💾 Guardar itinerario</button>
+				<button id="exportItBtn" class="secondary-btn" style="display:none">🖨️ Exportar (Imprimir)</button>
+			</div>
+		</section>
+
+		<section class="card">
+			<h2>Itinerario generado</h2>
+			<div id="itineraryView" class="result"></div>
+		</section>
+	</main>
+
+	<footer class="site-footer"><small>Generación inteligente de itinerarios con IA ✨</small></footer>
+	
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<script src="/assets/js/validation.js"></script>
+	<script src="/config.js"></script>
+	<script src="/assets/js/layout.js"></script>
+	<script src="/assets/js/auth-api.js"></script>
+	<script src="/assets/js/itineraries-api.js"></script>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/api-gemini.js"></script>
+ 	<script src="/assets/js/itinerary.js"></script>
+	
+</body>
+</html>
