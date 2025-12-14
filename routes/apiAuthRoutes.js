@@ -54,6 +54,19 @@ router.post('/api/auth/login', async (req, res) => {
     // Guardar userId en sesión (igual que AuthMiddleware::setUserId en PHP)
     req.session.uid = user._id.toString();
     
+    // Forzar guardado de sesión antes de responder
+    await new Promise((resolve, reject) => {
+      req.session.save((err) => {
+        if (err) {
+          console.error('Error guardando sesión:', err);
+          reject(err);
+        } else {
+          console.log('✅ Sesión guardada correctamente para:', user.username, 'uid:', req.session.uid);
+          resolve();
+        }
+      });
+    });
+    
     // Actualizar lastLogin
     user.lastLogin = new Date();
     await user.save();
@@ -101,6 +114,18 @@ router.post('/api/auth/register', async (req, res) => {
 
     // Guardar sesión
     req.session.uid = newUser._id.toString();
+    
+    // Forzar guardado de sesión
+    await new Promise((resolve, reject) => {
+      req.session.save((err) => {
+        if (err) {
+          console.error('Error guardando sesión en registro:', err);
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
 
     return res.json({ ok: true, userId: newUser._id.toString() });
   } catch (error) {
@@ -112,8 +137,10 @@ router.post('/api/auth/register', async (req, res) => {
 // GET /api/auth/me
 router.get('/api/auth/me', async (req, res) => {
   try {
+    console.log('🔍 /api/auth/me - Session ID:', req.sessionID, 'uid:', req.session.uid);
     // Verificar sesión (igual que AuthMiddleware::isAuthenticated)
     if (!req.session.uid) {
+      console.log('❌ No hay uid en sesión');
       return res.status(401).json({ ok: false, message: 'No autenticado' });
     }
 

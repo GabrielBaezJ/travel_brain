@@ -8,14 +8,19 @@ const mongoose = require("mongoose");
 // Configure mongoose
 mongoose.set('strictQuery', false);
 
-// Session middleware
+// Trust proxy (necesario para Render.com y otros servicios)
+app.set('trust proxy', 1);
+
+// Session middleware (configuración compatible con Render.com)
 app.use(session({
   secret: process.env.SESSION_SECRET || 'travel-brain-secret-key-2024',
   resave: false,
   saveUninitialized: false,
+  name: 'sessionId',
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: false, // Cambiar a false temporalmente para debug
+    sameSite: 'lax',
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
 }));
