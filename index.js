@@ -45,13 +45,11 @@ MongoClient.connect(MONGO_URI, {
     const userRoutes = require("./routes/userRoutes");
     const tripRoutes = require("./routes/tripRoutes");
 
-    // Registrar rutas públicas (sin autenticación)
+    // Registrar TODAS las rutas sin autenticación global
+    // La autenticación se maneja individualmente en cada ruta que la necesite
     app.use(authRouter);
     app.use(currencyRoutes);
     app.use(destinationRoutes);
-    
-    // Rutas protegidas (requieren autenticación)
-    app.use(authenticateToken);
     app.use(itineraryRoutes);
     app.use(rateRoutes);
     app.use(routeFavoritesRoutes);

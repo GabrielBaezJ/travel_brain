@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 
+// Importar middleware de autenticación
+const { authenticateToken } = require("./authRoutes");
+
 // GET /api/destinations/:id/rates/stats
 router.get('/api/destinations/:id/rates/stats', async (req, res) => {
   try {
@@ -52,7 +55,7 @@ router.get('/api/destinations/:id/rates/stats', async (req, res) => {
 });
 
 // GET /api/destinations/:id/rates/me
-router.get('/api/destinations/:id/rates/me', async (req, res) => {
+router.get('/api/destinations/:id/rates/me', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -133,7 +136,7 @@ router.get('/api/destinations/:id/rates/:page/:size', async (req, res) => {
 });
 
 // POST /api/destinations/:id/rate
-router.post('/api/destinations/:id/rate', async (req, res) => {
+router.post('/api/destinations/:id/rate', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -200,7 +203,7 @@ router.post('/api/destinations/:id/rate', async (req, res) => {
 });
 
 // POST /api/destinations/:id/favorite
-router.post('/api/destinations/:id/favorite', async (req, res) => {
+router.post('/api/destinations/:id/favorite', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -251,7 +254,7 @@ router.post('/api/destinations/:id/favorite', async (req, res) => {
 });
 
 // DELETE /api/destinations/:id/rates/me
-router.delete('/api/destinations/:id/rates/me', async (req, res) => {
+router.delete('/api/destinations/:id/rates/me', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -284,7 +287,7 @@ router.delete('/api/destinations/:id/rates/me', async (req, res) => {
 });
 
 // GET /api/users/me/rates/:page/:size
-router.get('/api/users/me/rates/:page/:size', async (req, res) => {
+router.get('/api/users/me/rates/:page/:size', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -326,7 +329,7 @@ router.get('/api/users/me/rates/:page/:size', async (req, res) => {
 });
 
 // GET /api/users/me/favorites
-router.get('/api/users/me/favorites', async (req, res) => {
+router.get('/api/users/me/favorites', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -354,7 +357,7 @@ router.get('/api/users/me/favorites', async (req, res) => {
 });
 
 // PUT /api/rates/:id
-router.put('/api/rates/:id', async (req, res) => {
+router.put('/api/rates/:id', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });

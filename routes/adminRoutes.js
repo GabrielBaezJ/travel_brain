@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 
+// Importar middleware de autenticación
+const { authenticateToken, requireAdmin } = require("./authRoutes");
+
 // GET /api/admin/metrics
-router.get('/api/admin/metrics', async (req, res) => {
+router.get('/api/admin/metrics', authenticateToken, requireAdmin, async (req, res) => {
   try {
     if (!req.user || req.user.role !== 'ADMIN') {
       return res.status(403).json({ ok: false, message: 'Acceso denegado' });
@@ -36,7 +39,7 @@ router.get('/api/admin/metrics', async (req, res) => {
 });
 
 // GET /api/admin/users/:page/:size
-router.get('/api/admin/users/:page/:size', async (req, res) => {
+router.get('/api/admin/users/:page/:size', authenticateToken, requireAdmin, async (req, res) => {
   try {
     if (!req.user || req.user.role !== 'ADMIN') {
       return res.status(403).json({ ok: false, message: 'Acceso denegado' });
@@ -76,7 +79,7 @@ router.get('/api/admin/users/:page/:size', async (req, res) => {
 });
 
 // PATCH /api/admin/users/:userId/role
-router.patch('/api/admin/users/:userId/role', async (req, res) => {
+router.patch('/api/admin/users/:userId/role', authenticateToken, requireAdmin, async (req, res) => {
   try {
     if (!req.user || req.user.role !== 'ADMIN') {
       return res.status(403).json({ ok: false, message: 'Acceso denegado' });
@@ -114,7 +117,7 @@ router.patch('/api/admin/users/:userId/role', async (req, res) => {
 });
 
 // PATCH /api/admin/users/:userId/status
-router.patch('/api/admin/users/:userId/status', async (req, res) => {
+router.patch('/api/admin/users/:userId/status', authenticateToken, requireAdmin, async (req, res) => {
   try {
     if (!req.user || req.user.role !== 'ADMIN') {
       return res.status(403).json({ ok: false, message: 'Acceso denegado' });
@@ -152,7 +155,7 @@ router.patch('/api/admin/users/:userId/status', async (req, res) => {
 });
 
 // DELETE /api/admin/users/:userId
-router.delete('/api/admin/users/:userId', async (req, res) => {
+router.delete('/api/admin/users/:userId', authenticateToken, requireAdmin, async (req, res) => {
   try {
     if (!req.user || req.user.role !== 'ADMIN') {
       return res.status(403).json({ ok: false, message: 'Acceso denegado' });

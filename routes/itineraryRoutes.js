@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 
+// Importar middleware de autenticación
+const { authenticateToken } = require("./authRoutes");
+
 // POST /api/trips/:tripId/itinerary
-router.post('/api/trips/:tripId/itinerary', async (req, res) => {
+router.post('/api/trips/:tripId/itinerary', authenticateToken, async (req, res) => {
   try {
     const { tripId } = req.params;
     const { days, preferences } = req.body;
@@ -74,7 +77,7 @@ router.post('/api/trips/:tripId/itinerary', async (req, res) => {
 });
 
 // GET /api/trips/:tripId/itinerary
-router.get('/api/trips/:tripId/itinerary', async (req, res) => {
+router.get('/api/trips/:tripId/itinerary', authenticateToken, async (req, res) => {
   try {
     const { tripId } = req.params;
 
@@ -104,7 +107,7 @@ router.get('/api/trips/:tripId/itinerary', async (req, res) => {
 });
 
 // GET /api/users/me/itineraries/:page/:size
-router.get('/api/users/me/itineraries/:page/:size', async (req, res) => {
+router.get('/api/users/me/itineraries/:page/:size', authenticateToken, async (req, res) => {
   try {
     // Requiere autenticación - el userId vendría de req.user
     if (!req.user || !req.user.id) {
@@ -152,7 +155,7 @@ router.get('/api/users/me/itineraries/:page/:size', async (req, res) => {
 });
 
 // PUT /api/itineraries/:id/days/:dayNumber
-router.put('/api/itineraries/:id/days/:dayNumber', async (req, res) => {
+router.put('/api/itineraries/:id/days/:dayNumber', authenticateToken, async (req, res) => {
   try {
     const { id, dayNumber } = req.params;
     const dayData = req.body;
@@ -183,7 +186,7 @@ router.put('/api/itineraries/:id/days/:dayNumber', async (req, res) => {
 });
 
 // PUT /api/itineraries/:id
-router.put('/api/itineraries/:id', async (req, res) => {
+router.put('/api/itineraries/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { days, preferences } = req.body;
@@ -218,7 +221,7 @@ router.put('/api/itineraries/:id', async (req, res) => {
 });
 
 // DELETE /api/itineraries/:id
-router.delete('/api/itineraries/:id', async (req, res) => {
+router.delete('/api/itineraries/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
 

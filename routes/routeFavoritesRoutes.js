@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { ObjectId } = require("mongodb");
 
+// Importar middleware de autenticación
+const { authenticateToken } = require("./authRoutes");
+
 // GET /api/routes/favorites/:page/:size
-router.get('/api/routes/favorites/:page/:size', async (req, res) => {
+router.get('/api/routes/favorites/:page/:size', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -44,7 +47,7 @@ router.get('/api/routes/favorites/:page/:size', async (req, res) => {
 });
 
 // POST /api/routes/favorites
-router.post('/api/routes/favorites', async (req, res) => {
+router.post('/api/routes/favorites', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });
@@ -86,7 +89,7 @@ router.post('/api/routes/favorites', async (req, res) => {
 });
 
 // DELETE /api/routes/favorites/:id
-router.delete('/api/routes/favorites/:id', async (req, res) => {
+router.delete('/api/routes/favorites/:id', authenticateToken, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ ok: false, message: 'No autorizado' });

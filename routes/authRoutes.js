@@ -180,4 +180,9 @@ router.post('/api/auth/logout', (req, res) => {
   res.json({ ok: true, message: 'Logout exitoso' });
 });
 
-module.exports = { router, authenticateToken, requireAdmin };
+// Exportar router y middlewares
+module.exports = { 
+  router, 
+  authenticateToken, 
+  requireAdmin 
+};
