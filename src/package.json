@@ -1,8 +1,0 @@
-{
-  "name": "project_functional_prototype-src-fallback",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ../index.js"
-  }
-}

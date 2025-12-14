@@ -1,18 +1,31 @@
 {
   "name": "project_functional_prototype",
   "version": "1.0.0",
-  "description": "**TravelBrain** is a web-based application that automatically generates personalized travel itineraries based on weather, budget, and distance.  \r The system integrates multiple APIs to provide real-time data for travel planning, including route estimation, weather forecasts, currency conversion, and destination imagery.",
+  "description": "**TravelBrain** is a web-based application that automatically generates personalized travel itineraries based on weather, budget, and distance. The system integrates multiple APIs to provide real-time data for travel planning, including route estimation, weather forecasts, currency conversion, and destination imagery.",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0 <23.0.0"
+  },
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["travel", "itinerary", "planner", "api", "mongodb"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1",
-    "mongoose": "^9.0.1",
-    "node-cache": "^5.1.2"
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.3",
+    "node-cache": "^5.1.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }
