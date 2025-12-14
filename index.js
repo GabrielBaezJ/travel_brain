@@ -60,11 +60,13 @@ const weatherRoutes = require("./routes/weatherRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tripRoutes = require("./routes/tripRoutes");
 const destinationRoutes = require("./routes/destinationRoutes");
+const favoriteRoutes = require("./routes/favoriteRoutes");
 
 app.use(weatherRoutes);
 app.use(userRoutes);
 app.use(tripRoutes);
 app.use(destinationRoutes);
+app.use(favoriteRoutes);
 
 // Connect to MongoDB with proper options
 mongoose.connect(process.env.MONGO_URI || `mongodb+srv://SrJCBM:bdd2025@cluster0.tjvfmrk.mongodb.net/travel_brain?retryWrites=true&w=majority`, {
