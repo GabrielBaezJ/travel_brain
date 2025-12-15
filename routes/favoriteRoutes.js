@@ -3,7 +3,7 @@ const FavoriteRoute = require("../models/favorite_routes");
 const router = express.Router();
 
 //Get all Favorite Routes
-router.get("/favorite-routes", async(req, res) =>{
+router.get("/api/favorite-routes", async(req, res) =>{
     try{
         console.log("Fetching all favorite routes...");
         const favoriteRoutes = await FavoriteRoute.find();
@@ -16,7 +16,7 @@ router.get("/favorite-routes", async(req, res) =>{
 });
 
 //Get one Favorite Route
-router.get('/favorite-routes/:id', async (req, res) =>{
+router.get('/api/favorite-routes/:id', async (req, res) =>{
     try{
         const favoriteRouteObject = await FavoriteRoute.findById(req.params.id);
         if(favoriteRouteObject == null){
@@ -31,7 +31,7 @@ router.get('/favorite-routes/:id', async (req, res) =>{
 });
 
 //Create/Insert one Favorite Route
-router.post('/favorite-routes', async (req, res) => {
+router.post('/api/favorite-routes', async (req, res) => {
     const favoriteRouteObject = new FavoriteRoute({
         userId: req.body.userId,
         name: req.body.name,
@@ -62,7 +62,7 @@ router.post('/favorite-routes', async (req, res) => {
 });
 
 //Update one Favorite Route
-router.put('/favorite-routes/:id', async (req, res) => {
+router.put('/api/favorite-routes/:id', async (req, res) => {
     try{
         console.log(`Updating favorite route with id: ${req.params.id}`);
         const favoriteRouteObject = await FavoriteRoute.findById(req.params.id);
@@ -108,7 +108,7 @@ router.put('/favorite-routes/:id', async (req, res) => {
 });
 
 //Delete one Favorite Route
-router.delete('/favorite-routes/:id', async (req, res) => {
+router.delete('/api/favorite-routes/:id', async (req, res) => {
     try{
         console.log(`Deleting favorite route with id: ${req.params.id}`);
         const favoriteRouteObject = await FavoriteRoute.findById(req.params.id);

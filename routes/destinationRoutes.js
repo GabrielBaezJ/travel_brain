@@ -3,7 +3,7 @@ const Destination = require("../models/destinations");
 const router = express.Router();
 
 //Get all Destinations
-router.get("/destinations", async(req, res) =>{
+router.get("/api/destinations", async(req, res) =>{
     try{
         console.log("Fetching all destinations...");
         const destinations = await Destination.find();
@@ -16,7 +16,7 @@ router.get("/destinations", async(req, res) =>{
 });
 
 //Get one Destination
-router.get('/destinations/:id', async (req, res) =>{
+router.get('/api/destinations/:id', async (req, res) =>{
     try{
         const destinationObject = await Destination.findById(req.params.id);
         if(destinationObject == null){
@@ -31,7 +31,7 @@ router.get('/destinations/:id', async (req, res) =>{
 });
 
 //Create/Insert one Destination
-router.post('/destinations', async (req, res) => {
+router.post('/api/destinations', async (req, res) => {
     const destinationObject = new Destination({
         name: req.body.name,
         country: req.body.country,
@@ -54,7 +54,7 @@ router.post('/destinations', async (req, res) => {
 });
 
 //Update one Destination
-router.put('/destinations/:id', async (req, res) => {
+router.put('/api/destinations/:id', async (req, res) => {
     try{
         console.log(`Updating destination with id: ${req.params.id}`);
         const destinationObject = await Destination.findById(req.params.id);
@@ -96,7 +96,7 @@ router.put('/destinations/:id', async (req, res) => {
 });
 
 //Delete one Destination
-router.delete('/destinations/:id', async (req, res) => {
+router.delete('/api/destinations/:id', async (req, res) => {
     try{
         console.log(`Deleting destination with id: ${req.params.id}`);
         const destinationObject = await Destination.findById(req.params.id);
