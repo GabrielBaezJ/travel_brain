@@ -3,7 +3,7 @@ const Trip = require("../models/trips");
 const router = express.Router();
 
 //Get all Trips
-router.get("/api/trips", async(req, res) =>{
+router.get("/trips", async(req, res) =>{
     try{
         console.log("Fetching all trips...");
         const trips = await Trip.find();
@@ -16,7 +16,7 @@ router.get("/api/trips", async(req, res) =>{
 });
 
 //Get one Trip
-router.get('/api/trips/:id', async (req, res) =>{
+router.get('/trips/:id', async (req, res) =>{
     try{
         const tripObject = await Trip.findById(req.params.id);
         if(tripObject == null){
@@ -31,7 +31,7 @@ router.get('/api/trips/:id', async (req, res) =>{
 });
 
 //Create/Insert one Trip
-router.post('/api/trips', async (req, res) => {
+router.post('/trips', async (req, res) => {
     const tripObject = new Trip({
         userId: req.body.userId,
         title: req.body.title,
@@ -53,7 +53,7 @@ router.post('/api/trips', async (req, res) => {
 });
 
 //Update one Trip
-router.put('/api/trips/:id', async (req, res) => {
+router.put('/trips/:id', async (req, res) => {
     try{
         console.log(`Updating trip with id: ${req.params.id}`);
         const tripObject = await Trip.findById(req.params.id);
@@ -95,7 +95,7 @@ router.put('/api/trips/:id', async (req, res) => {
 });
 
 //Delete one Trip
-router.delete('/api/trips/:id', async (req, res) => {
+router.delete('/trips/:id', async (req, res) => {
     try{
         console.log(`Deleting trip with id: ${req.params.id}`);
         const tripObject = await Trip.findById(req.params.id);
